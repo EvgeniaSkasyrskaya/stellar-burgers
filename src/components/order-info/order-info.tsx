@@ -1,7 +1,11 @@
-import { FC, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useMemo, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from '../../services/store';
 import { useParams } from 'react-router-dom';
-import { getOrders } from '../../services/slices/feedsSlice';
+import {
+  getOrderByNumber,
+  getOrdersForView
+} from '../../services/slices/feedsSlice';
 import { getIngredients } from '../../services/slices/ingredientsSlice';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
@@ -10,7 +14,11 @@ import { TIngredient, TOrder } from '@utils-types';
 export const OrderInfo: FC = () => {
   /** TODO: взять переменные orderData и ingredients из стора */
   const orderNumber = Number(useParams().number);
-  const orderData = useSelector(getOrders).find(
+  const dispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOrderByNumber(orderNumber));
+  }, [dispatch]);
+  const orderData = useSelector(getOrdersForView).find(
     (item) => item.number === orderNumber
   );
   const ingredients: TIngredient[] = useSelector(getIngredients);
@@ -24,21 +32,26 @@ export const OrderInfo: FC = () => {
     type TIngredientsWithCount = {
       [key: string]: TIngredient & { count: number };
     };
-
     const ingredientsInfo = orderData.ingredients.reduce(
       (acc: TIngredientsWithCount, item) => {
         if (!acc[item]) {
           const ingredient = ingredients.find((ing) => ing._id === item);
           if (ingredient) {
-            acc[item] = {
-              ...ingredient,
-              count: 1
-            };
+            if (ingredient.type === 'bun') {
+              acc[item] = {
+                ...ingredient,
+                count: 2
+              };
+            } else {
+              acc[item] = {
+                ...ingredient,
+                count: 1
+              };
+            }
           }
         } else {
           acc[item].count++;
         }
-
         return acc;
       },
       {}

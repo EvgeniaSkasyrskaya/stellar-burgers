@@ -16,7 +16,7 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
   const orderInfo = useMemo(() => {
     if (!ingredients.length) return null;
 
-    const ingredientsInfo = order.ingredients.reduce(
+    let ingredientsInfo = order.ingredients.reduce(
       (acc: TIngredient[], item: string) => {
         const ingredient = ingredients.find((ing) => ing._id === item);
         if (ingredient) return [...acc, ingredient];
@@ -24,7 +24,11 @@ export const OrderCard: FC<OrderCardProps> = memo(({ order }) => {
       },
       []
     );
-
+    //  для корректного подсчета стоимости бургера надо булочку посчитать 2 раза
+    const ingredientsBun = ingredientsInfo.find((item) => item.type === 'bun');
+    if (ingredientsBun) {
+      ingredientsInfo = ingredientsInfo.concat(ingredientsBun);
+    }
     const total = ingredientsInfo.reduce((acc, item) => acc + item.price, 0);
 
     const ingredientsToShow = ingredientsInfo.slice(0, maxIngredients);
