@@ -25,6 +25,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
         </NavLink>
         <NavLink
           to='/feed'
+          data-cy='feedsListIcon'
           className={({ isActive }) =>
             clsx(styles.link, isActive && styles.link_active)
           }
@@ -46,7 +47,10 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
           }
         >
           <ProfileIcon type={'primary'} />
-          <p className='text text_type_main-default ml-2'>
+          <p
+            className='text text_type_main-default ml-2'
+            data-cy='userProfileIcon'
+          >
             {userName || 'Личный кабинет'}
           </p>
         </NavLink>

@@ -11,7 +11,7 @@ export interface UserOrdersState {
   isUserOrdersLoading: boolean;
 }
 
-const initialState: UserOrdersState = {
+export const initialState: UserOrdersState = {
   userOrders: [],
   isUserOrdersLoading: false
 };

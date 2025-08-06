@@ -11,7 +11,7 @@ export const ModalUI: FC<TModalUIProps> = memo(
     const orderNumber: string | undefined = useParams()?.number;
     return (
       <>
-        <div className={styles.modal}>
+        <div className={styles.modal} data-cy='modal'>
           <div className={styles.header}>
             <h3
               className={
@@ -22,7 +22,11 @@ export const ModalUI: FC<TModalUIProps> = memo(
             >
               {orderNumber ? `#${String(orderNumber).padStart(6, '0')}` : title}
             </h3>
-            <button className={styles.button} type='button'>
+            <button
+              className={styles.button}
+              type='button'
+              data-cy='modalCloseButton'
+            >
               <CloseIcon type='primary' onClick={onClose} />
             </button>
           </div>

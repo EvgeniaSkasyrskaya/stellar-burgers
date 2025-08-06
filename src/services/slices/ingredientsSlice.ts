@@ -7,12 +7,12 @@ export const fetchIngredients = createAsyncThunk(
   async () => getIngredientsApi()
 );
 
-export interface BurgerIngrediantsState {
+export interface BurgerIngredientsState {
   ingredientsList: TIngredient[];
   isIngredientsLoading: boolean;
 }
 
-const initialState: BurgerIngrediantsState = {
+export const initialState: BurgerIngredientsState = {
   ingredientsList: [],
   isIngredientsLoading: true
 };

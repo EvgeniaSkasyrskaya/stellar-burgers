@@ -32,6 +32,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
     ) : (
       <div
         className={`${styles.noBuns} ${styles.noBunsTop} ml-8 mb-4 mr-5 text text_type_main-default`}
+        data-cy='textBunNotSelected'
       >
         Выберите булки
       </div>
@@ -75,7 +76,9 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
     )}
     <div className={`${styles.total} mt-10 mr-4`}>
       <div className={`${styles.cost} mr-10`}>
-        <p className={`text ${styles.text} mr-2`}>{price}</p>
+        <p className={`text ${styles.text} mr-2`} data-cy='orderPrice'>
+          {price}
+        </p>
         <CurrencyIcon type='primary' />
       </div>
       <Button
@@ -84,6 +87,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
         size='large'
         children='Оформить заказ'
         onClick={onOrderClick}
+        data-cy='orderButton'
       />
     </div>
 

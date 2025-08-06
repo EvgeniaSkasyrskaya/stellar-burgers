@@ -27,7 +27,7 @@ export interface BurgerFeedsState {
   isOrderLoading: boolean;
 }
 
-const initialState: BurgerFeedsState = {
+export const initialState: BurgerFeedsState = {
   feeds: {
     orders: [],
     total: 0,
