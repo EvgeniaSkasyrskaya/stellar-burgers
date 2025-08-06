@@ -66,7 +66,7 @@ export interface TUserInfo {
   isUserChecked: boolean;
 }
 
-const initialState: TUserInfo = {
+export const initialState: TUserInfo = {
   userData: null,
   isFetching: false,
   isUserChecked: false
