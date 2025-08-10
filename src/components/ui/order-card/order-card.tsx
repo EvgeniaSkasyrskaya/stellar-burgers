@@ -15,6 +15,7 @@ export const OrderCardUI: FC<OrderCardUIProps> = memo(
     <Link
       to={orderInfo.number.toString()}
       relative='path'
+      data-cy='orderCard'
       state={locationState}
       className={`p-6 mb-4 mr-2 ${styles.order}`}
     >

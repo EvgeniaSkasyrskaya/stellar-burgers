@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { TIngredient, TConstructorIngredient, TOrder } from '../../utils/types';
-import { orderBurgerApi } from '@api';
+import { orderBurgerApi } from '../../utils/burger-api';
 
 export const orderBurger = createAsyncThunk(
   'burgerConstructor',
@@ -19,7 +19,7 @@ export interface BurgerConstructorState {
   orderModalData: TOrder | null;
 }
 
-const initialState: BurgerConstructorState = {
+export const initialState: BurgerConstructorState = {
   constructorItems: {
     bun: null,
     ingredients: []
