@@ -22,7 +22,6 @@ describe('rootReducer', () => {
 
   test('инициализация начального состояния некорректным экшеном', () => {
     const newRootState = rootReducer(undefined, { type: 'unknownActionType' });
-    console.log(newRootState);
     expect(newRootState).toEqual(initialRootState);
   });
 
@@ -82,7 +81,6 @@ describe('rootReducer', () => {
           }
         ];
     const newRootState = rootReducer(undefined, { type: 'ingredients/fetch/fulfilled', payload: mockIngredients });
-    console.log(newRootState);
     expect(newRootState.ingredients.ingredientsList).toEqual(mockIngredients);
     expect(newRootState.ingredients.isIngredientsLoading).toBeFalsy;
   });

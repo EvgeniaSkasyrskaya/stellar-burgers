@@ -9,7 +9,7 @@ import {
 } from '../../utils/burger-api';
 import { setCookie, deleteCookie } from '../../utils/cookie';
 
-type TRegisterData = {
+export type TRegisterData = {
   name: string;
   email: string;
   password: string;
@@ -58,7 +58,7 @@ export const logoutUser = createAsyncThunk('userInfo/logout', async () => {
   }
 });
 
-type TUserData = Pick<TAuthResponse, 'user'>;
+export type TUserData = Pick<TAuthResponse, 'user'>;
 
 export interface TUserInfo {
   userData: TUserData | null;
